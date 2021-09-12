@@ -310,6 +310,7 @@ static int hevc_parse_nal_header(H2645NAL *nal, void *logctx)
     return 0;
 }
 
+static int gop_length = 0;
 static int h264_parse_nal_header(H2645NAL *nal, void *logctx)
 {
     GetBitContext *gb = &nal->gb;
@@ -319,6 +320,14 @@ static int h264_parse_nal_header(H2645NAL *nal, void *logctx)
 
     nal->ref_idc = get_bits(gb, 2);
     nal->type    = get_bits(gb, 5);
+
+    if (nal->type == 5 || nal->type == 18)
+    {
+	printf("gop length: %d\n", gop_length);
+	gop_length = 1;
+    }
+    else if (nal->type == 1)
+	gop_length++;
 
     av_log(logctx, AV_LOG_DEBUG,
            "nal_unit_type: %d(%s), nal_ref_idc: %d\n",

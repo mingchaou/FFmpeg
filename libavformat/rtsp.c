@@ -314,6 +314,7 @@ static int sdp_parse_rtpmap(AVFormatContext *s,
     else
         c_name = "(null)";
 
+    printf("codec: %s\n", c_name);
     get_word_sep(buf, sizeof(buf), "/", &p);
     i = atoi(buf);
     switch (par->codec_type) {
