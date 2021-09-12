@@ -2,7 +2,9 @@ README
 =============
 compile yourself please follow
 https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+
 you can directly execute ffmpeg on ubuntu 20.04 (linux x64)
+
 ./ffmpeg -rtsp_transport tcp -i rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov -f null /dev/null 2>/dev/null
 
 FFmpeg README
